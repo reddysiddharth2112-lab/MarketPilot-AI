@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: marketpilot-ai
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && corepack pnpm install --frozen-lockfile && pnpm run build:render
+    startCommand: pnpm --filter @workspace/api-server run start
+    envVars:
+      - key: SERPAPI_KEY
+        sync: false
+      - key: BASE_PATH
+        value: /
